@@ -1,0 +1,158 @@
+direction: down
+
+title: "Governance, Security & Audit Architecture"
+
+####################################################
+# Identity
+####################################################
+
+identity: {
+    label: "Identity & Access"
+
+    style: {
+        fill: "#D6EAF8"
+        stroke: "#2471A3"
+    }
+}
+
+authentication: {
+    label: "Authentication"
+}
+
+authorization: {
+    label: "Role-Based Access Control"
+}
+
+####################################################
+# Runtime Governance
+####################################################
+
+runtime: {
+    label: "Runtime Governance"
+
+    style: {
+        fill: "#D5F5E3"
+        stroke: "#1E8449"
+    }
+}
+
+rule_version: {
+    label: "Rule Version Tracking"
+}
+
+factbook: {
+    label: "Immutable FactBook"
+}
+
+provenance: {
+    label: "Execution Provenance"
+}
+
+####################################################
+# AI Governance
+####################################################
+
+ai: {
+    label: "AI Governance"
+
+    style: {
+        fill: "#FDEBD0"
+        stroke: "#AF601A"
+    }
+}
+
+prompt_version: {
+    label: "Prompt Versioning"
+}
+
+model_version: {
+    label: "Model Versioning"
+}
+
+validation: {
+    label: "AI Output Validation"
+}
+
+####################################################
+# Audit Layer
+####################################################
+
+audit: {
+    label: "Audit & Compliance"
+
+    style: {
+        fill: "#EBDEF0"
+        stroke: "#6C3483"
+    }
+}
+
+audit_log: {
+    label: "Immutable Audit Log"
+}
+
+sar_version: {
+    label: "SAR Version History"
+}
+
+traceability: {
+    label: "End-to-End Traceability"
+}
+
+####################################################
+# Security
+####################################################
+
+security: {
+    label: "Security Controls"
+
+    style: {
+        fill: "#FADBD8"
+        stroke: "#922B21"
+    }
+}
+
+transport: {
+    label: "TLS Encryption"
+}
+
+storage: {
+    label: "Encrypted Storage"
+}
+
+####################################################
+# Governance Flow
+####################################################
+
+identity -> authentication
+
+authentication -> authorization
+
+authorization -> runtime
+
+runtime -> rule_version
+
+runtime -> factbook
+
+runtime -> provenance
+
+runtime -> ai
+
+ai -> prompt_version
+
+ai -> model_version
+
+ai -> validation
+
+validation -> audit
+
+audit -> audit_log
+
+audit -> sar_version
+
+audit -> traceability
+
+audit -> security
+
+security -> transport
+
+security -> storage

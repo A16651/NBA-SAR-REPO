@@ -1,0 +1,303 @@
+direction: right
+
+title: " Container Architecture"
+
+# #############################################
+# Users
+# #############################################
+
+user: {
+  label: "NBA Coordinator / Faculty"
+  shape: person
+}
+
+# #############################################
+# Runtime Services
+# #############################################
+
+portal: {
+  label: "SAR Portal\n(Next.js)"
+
+  style: {
+    fill: "#D6EAF8"
+    stroke: "#1F618D"
+  }
+}
+
+gateway: {
+  label: "Report Orchestrator\n(FastAPI)"
+
+  style: {
+    fill: "#D5F5E3"
+    stroke: "#1E8449"
+  }
+}
+
+context: {
+  label: "Report Context Builder"
+
+  style: {
+    fill: "#FCF3CF"
+    stroke: "#B7950B"
+  }
+}
+
+erp: {
+  label: "ERP Data Connector"
+
+  style: {
+    fill: "#FCF3CF"
+    stroke: "#B7950B"
+  }
+}
+
+executor: {
+  label: "Rule Execution Engine"
+
+  style: {
+    fill: "#FADBD8"
+    stroke: "#922B21"
+  }
+}
+
+mapping_agent: {
+  label: "Runtime Mapping Agent"
+
+  style: {
+    fill: "#FDEDEC"
+    stroke: "#CB4335"
+  }
+}
+
+narrative: {
+  label: "Narrative Generation Engine"
+
+  style: {
+    fill: "#EBDEF0"
+    stroke: "#6C3483"
+  }
+}
+
+assembler: {
+  label: "Document Assembler"
+
+  style: {
+    fill: "#D4EFDF"
+    stroke: "#196F3D"
+  }
+}
+
+# #############################################
+# Configuration Services
+# #############################################
+
+mapping: {
+  label: "AI Mapping Compiler"
+
+  style: {
+    fill: "#FDEDEC"
+    stroke: "#CB4335"
+  }
+}
+
+validator: {
+  label: "Rule Validator"
+
+  style: {
+    fill: "#F9EBEA"
+    stroke: "#922B21"
+  }
+}
+
+verification: {
+  label: "Rule Verification Service"
+
+  style: {
+    fill: "#FCEDEC"
+    stroke: "#922B21"
+  }
+}
+
+# #############################################
+# External Systems
+# #############################################
+
+vidyanvesha: {
+  label: "Vidyanvesha ERP"
+
+  style: {
+    fill: "#FCF3CF"
+    stroke: "#B7950B"
+  }
+}
+
+template: {
+  label: "NBA SAR Template"
+
+  style: {
+    fill: "#EBF5FB"
+    stroke: "#2471A3"
+  }
+}
+
+ai: {
+  label: "Private AI Platform"
+
+  style: {
+    fill: "#FDEBD0"
+    stroke: "#AF601A"
+  }
+}
+
+mapping_llm: {
+  label: "Mapping LLM"
+
+  style: {
+    fill: "#FCF3CF"
+    stroke: "#AF601A"
+  }
+}
+
+narrative_llm: {
+  label: "Narrative LLM"
+
+  style: {
+    fill: "#FCF3CF"
+    stroke: "#AF601A"
+  }
+}
+
+# #############################################
+# Data Stores
+# #############################################
+
+rules: {
+  label: "Rule Repository"
+
+  shape: cylinder
+
+  style: {
+    fill: "#EBDEF0"
+    stroke: "#6C3483"
+  }
+}
+
+repository: {
+  label: "Knowledge Repository"
+
+  shape: cylinder
+
+  style: {
+    fill: "#F5EEF8"
+    stroke: "#76448A"
+  }
+}
+
+vector: {
+  label: "Vector Database"
+
+  shape: cylinder
+
+  style: {
+    fill: "#E8DAEF"
+    stroke: "#6C3483"
+  }
+}
+
+storage: {
+  label: "Object Storage"
+
+  shape: cylinder
+
+  style: {
+    fill: "#EBF5FB"
+    stroke: "#2471A3"
+  }
+}
+
+redis: {
+  label: "Redis"
+
+  shape: cylinder
+
+  style: {
+    fill: "#FDEDEC"
+    stroke: "#CB4335"
+  }
+}
+
+# #############################################
+# AI Platform Composition
+# #############################################
+
+ai -> mapping_llm
+
+ai -> narrative_llm
+
+# #############################################
+# Runtime Flow
+# #############################################
+
+user -> portal: Generate / Review SAR
+
+portal -> gateway: REST API
+
+gateway -> context: Create Report Context
+
+context -> erp: Fetch Institutional Data
+
+erp -> vidyanvesha: Read-only Access
+
+context -> executor: Runtime Context
+
+executor -> rules: Load Approved Rules
+
+executor -> repository: Store Facts & Metrics
+
+executor -> mapping_agent: Missing Rule
+
+mapping_agent -> mapping_llm: Infer Mapping
+
+mapping_agent -> rules: Cache Verified Runtime Rule
+
+gateway -> narrative: Generate Narratives
+
+narrative -> repository: Read Facts
+
+narrative -> vector: Retrieve Institutional Context
+
+narrative -> narrative_llm: Generate Narrative
+
+narrative -> repository: Store Narratives
+
+gateway -> assembler: Build Report
+
+assembler -> repository: Read Report Data
+
+assembler -> storage: Store PDF
+
+portal -> storage: Download PDF
+
+gateway -> redis: Submit Background Jobs
+
+redis -> executor
+
+redis -> narrative
+
+redis -> assembler
+
+# #############################################
+# Configuration Flow
+# #############################################
+
+template -> mapping: Template Updated
+
+vidyanvesha -> mapping: Schema Metadata
+
+mapping -> mapping_llm: Generate Candidate Rules
+
+mapping_llm -> validator: Proposed Rules
+
+validator -> verification: Structural Validation
+
+verification -> rules: Publish Verified Rules

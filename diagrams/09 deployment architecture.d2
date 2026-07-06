@@ -1,0 +1,116 @@
+direction: down
+
+title: "Physical Deployment Architecture"
+
+####################################################
+# Client Layer
+####################################################
+
+client: {
+    label: "Faculty Browser"
+    shape: person
+}
+
+####################################################
+# Application Layer
+####################################################
+
+application: {
+    label: "Application Cluster"
+
+    style: {
+        fill: "#D6EAF8"
+        stroke: "#2471A3"
+        stroke-width: 2
+    }
+
+    portal: "SAR Portal (Next.js)"
+
+    orchestrator: "Report Orchestrator"
+
+    context: "Context Builder"
+
+    rule_engine: "Rule Execution Engine"
+
+    narrative: "Narrative Engine"
+
+    assembler: "Document Assembler"
+}
+
+####################################################
+# AI Layer
+####################################################
+
+ai_cluster: {
+    label: "Private AI Cluster"
+
+    style: {
+        fill: "#FDEBD0"
+        stroke: "#AF601A"
+        stroke-width: 2
+    }
+
+    mapping_llm: "Mapping LLM"
+
+    narrative_llm: "Narrative LLM"
+}
+
+####################################################
+# Data Layer
+####################################################
+
+data: {
+
+    label: "Data Layer"
+
+    style: {
+        fill: "#EBDEF0"
+        stroke: "#6C3483"
+        stroke-width: 2
+    }
+
+    rules: "Rule Repository"
+
+    knowledge: "Knowledge Repository"
+
+    prompts: "Prompt Template Repository"
+
+    vector: "Vector Database"
+
+    redis: "Redis Runtime Cache"
+
+    storage: "Object Storage"
+}
+
+####################################################
+# External Systems
+####################################################
+
+external: {
+
+    label: "Enterprise Systems"
+
+    style: {
+        fill: "#FCF3CF"
+        stroke: "#B7950B"
+        stroke-width: 2
+    }
+
+    erp: "Vidyanvesha ERP"
+
+    nba: "NBA SAR Templates"
+}
+
+####################################################
+# Connections
+####################################################
+
+client -> application
+
+application -> ai_cluster
+
+application -> data
+
+application -> external
+
+ai_cluster -> data

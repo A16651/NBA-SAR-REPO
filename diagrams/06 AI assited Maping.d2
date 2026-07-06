@@ -1,0 +1,148 @@
+direction: down
+
+title: "AI Mapping & ERP Integration"
+
+####################################################
+# Inputs
+####################################################
+
+erp_schema: {
+  label: "ERP Schema Metadata"
+  shape: oval
+}
+
+nba_template: {
+  label: "NBA SAR Template"
+  shape: oval
+}
+
+####################################################
+# Analysis
+####################################################
+
+schema_analyzer: {
+  label: "Schema Analyzer"
+
+  style: {
+    fill: "#FCF3CF"
+    stroke: "#B7950B"
+  }
+}
+
+template_analyzer: {
+  label: "Template Analyzer"
+
+  style: {
+    fill: "#FCF3CF"
+    stroke: "#B7950B"
+  }
+}
+
+####################################################
+# AI Mapping
+####################################################
+
+mapping_llm: {
+  label: "Mapping LLM"
+
+  style: {
+    fill: "#FDEBD0"
+    stroke: "#AF601A"
+  }
+}
+
+rule_generator: {
+  label: "Rule Generator"
+
+  style: {
+    fill: "#FDEDEC"
+    stroke: "#CB4335"
+  }
+}
+
+####################################################
+# Quality Assurance
+####################################################
+
+validator: {
+  label: "Rule Validator"
+
+  style: {
+    fill: "#F9EBEA"
+    stroke: "#922B21"
+  }
+}
+
+verification: {
+  label: "Rule Verification Service"
+
+  style: {
+    fill: "#FCEDEC"
+    stroke: "#922B21"
+  }
+}
+
+####################################################
+# Rule Management
+####################################################
+
+versioning: {
+  label: "Rule Version Manager"
+
+  style: {
+    fill: "#D6EAF8"
+    stroke: "#2471A3"
+  }
+}
+
+repository: {
+  label: "Rule Repository"
+
+  shape: cylinder
+
+  style: {
+    fill: "#EBDEF0"
+    stroke: "#6C3483"
+  }
+}
+
+####################################################
+# Runtime Feedback
+####################################################
+
+feedback: {
+  label: "Runtime Knowledge Feedback"
+
+  style: {
+    fill: "#D5F5E3"
+    stroke: "#1E8449"
+  }
+}
+
+####################################################
+# Flow
+####################################################
+
+erp_schema -> schema_analyzer
+
+nba_template -> template_analyzer
+
+schema_analyzer -> mapping_llm
+
+template_analyzer -> mapping_llm
+
+mapping_llm -> rule_generator
+
+rule_generator -> validator
+
+validator -> verification
+
+verification -> versioning
+
+versioning -> repository
+
+####################################################
+# Continuous Improvement
+####################################################
+
+feedback -> mapping_llm: Improve Future Rule Generation

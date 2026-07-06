@@ -1,0 +1,170 @@
+direction: down
+
+title: "Rule Execution Engine"
+
+erp_snapshot: {
+  label: "ERP Snapshot"
+  shape: oval
+}
+
+####################################################
+# Rule Loading
+####################################################
+
+loader: {
+  label: "Rule Loader"
+
+  style: {
+    fill: "#FCF3CF"
+    stroke: "#B7950B"
+  }
+}
+
+repository: {
+  label: "Rule Repository"
+
+  shape: cylinder
+
+  style: {
+    fill: "#EBDEF0"
+    stroke: "#6C3483"
+  }
+}
+
+cache: {
+  label: "Rule Runtime Cache"
+
+  shape: cylinder
+
+  style: {
+    fill: "#EBF5FB"
+    stroke: "#2471A3"
+  }
+}
+
+####################################################
+# Rule Execution
+####################################################
+
+dispatcher: {
+  label: "Rule Dispatcher"
+
+  style: {
+    fill: "#D6EAF8"
+    stroke: "#2471A3"
+  }
+}
+
+mapping: {
+  label: "Mapping Engine"
+
+  style: {
+    fill: "#FADBD8"
+    stroke: "#922B21"
+  }
+}
+
+formula: {
+  label: "Formula Engine"
+
+  style: {
+    fill: "#FADBD8"
+    stroke: "#922B21"
+  }
+}
+
+validation: {
+  label: "Validation Engine"
+
+  style: {
+    fill: "#FADBD8"
+    stroke: "#922B21"
+  }
+}
+
+####################################################
+# Runtime Recovery
+####################################################
+
+agent: {
+  label: "Runtime Mapping Agent"
+
+  style: {
+    fill: "#FDEDEC"
+    stroke: "#CB4335"
+  }
+}
+
+mapping_llm: {
+  label: "Mapping LLM"
+
+  style: {
+    fill: "#FDEBD0"
+    stroke: "#AF601A"
+  }
+}
+
+####################################################
+# Output
+####################################################
+
+factbook: {
+  label: "Immutable FactBook"
+
+  style: {
+    fill: "#D5F5E3"
+    stroke: "#1E8449"
+    stroke-width: 2
+  }
+}
+
+knowledge: {
+  label: "Knowledge Repository"
+
+  shape: cylinder
+
+  style: {
+    fill: "#F5EEF8"
+    stroke: "#76448A"
+  }
+}
+
+####################################################
+# Flow
+####################################################
+
+erp_snapshot -> loader
+
+repository -> loader
+
+loader -> cache
+
+cache -> dispatcher
+
+dispatcher -> mapping
+
+dispatcher -> formula
+
+dispatcher -> validation
+
+mapping -> factbook
+
+formula -> factbook
+
+validation -> factbook
+
+####################################################
+# Runtime AI Recovery
+####################################################
+
+mapping -> agent: Rule Missing
+
+agent -> mapping_llm: Infer Mapping Rule
+
+mapping_llm -> mapping: Temporary Runtime Rule
+
+####################################################
+# Persistence
+####################################################
+
+factbook -> knowledge: Store Facts & Metrics

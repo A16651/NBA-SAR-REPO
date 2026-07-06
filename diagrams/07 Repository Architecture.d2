@@ -1,0 +1,158 @@
+direction: down
+
+title: "Knowledge & Repository Architecture"
+
+####################################################
+# Runtime Services
+####################################################
+
+runtime: {
+  label: "Runtime Services"
+  shape: oval
+}
+
+####################################################
+# Rule Storage
+####################################################
+
+rules: {
+  label: "Rule Repository"
+
+  shape: cylinder
+
+  style: {
+    fill: "#EBDEF0"
+    stroke: "#6C3483"
+  }
+}
+
+####################################################
+# Knowledge Storage
+####################################################
+
+knowledge: {
+  label: "Knowledge Repository"
+
+  shape: cylinder
+
+  style: {
+    fill: "#F5EEF8"
+    stroke: "#76448A"
+  }
+}
+
+####################################################
+# Prompt Storage
+####################################################
+
+prompts: {
+  label: "Prompt Template Repository"
+
+  shape: cylinder
+
+  style: {
+    fill: "#EBF5FB"
+    stroke: "#2471A3"
+  }
+}
+
+####################################################
+# Semantic Storage
+####################################################
+
+vector: {
+  label: "Vector Database"
+
+  shape: cylinder
+
+  style: {
+    fill: "#E8DAEF"
+    stroke: "#6C3483"
+  }
+}
+
+####################################################
+# Object Storage
+####################################################
+
+storage: {
+  label: "Object Storage"
+
+  shape: cylinder
+
+  style: {
+    fill: "#D6EAF8"
+    stroke: "#2471A3"
+  }
+}
+
+####################################################
+# Runtime Cache
+####################################################
+
+redis: {
+  label: "Redis Runtime Cache"
+
+  shape: cylinder
+
+  style: {
+    fill: "#FDEDEC"
+    stroke: "#CB4335"
+  }
+}
+
+####################################################
+# Repository Contents
+####################################################
+
+rules_content: {
+    label: "• Mapping Rules\n• Formula Rules\n• Rule Versions\n• Rule Metadata"
+}
+
+knowledge_content: {
+    label: "• Immutable FactBooks\n• Metrics\n• Narratives\n• Audit Trail\n• Provenance"
+}
+
+prompts_content: {
+    label: "• Prompt Templates\n• NBA Sections\n• Prompt Versions"
+}
+
+vector_content: {
+    label: "• Institutional Embeddings\n• Previous SARs\n• NBA Documents\n• Policies"
+}
+
+storage_content: {
+    label: "• Generated PDFs\n• Evidence Files\n• Uploaded Templates"
+}
+
+redis_content: {
+    label: "• Rule Cache\n• Background Jobs\n• Session Cache"
+}
+
+####################################################
+# Relationships
+####################################################
+
+runtime -> rules
+
+runtime -> knowledge
+
+runtime -> prompts
+
+runtime -> vector
+
+runtime -> storage
+
+runtime -> redis
+
+rules -> rules_content
+
+knowledge -> knowledge_content
+
+prompts -> prompts_content
+
+vector -> vector_content
+
+storage -> storage_content
+
+redis -> redis_content

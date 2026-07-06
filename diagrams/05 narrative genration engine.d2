@@ -1,0 +1,128 @@
+direction: down
+
+title: "Narrative Generation Engine"
+
+####################################################
+# Input
+####################################################
+
+factbook: {
+  label: "Immutable FactBook"
+  shape: oval
+}
+
+####################################################
+# Prompt Construction
+####################################################
+
+builder: {
+  label: "Prompt Builder"
+
+  style: {
+    fill: "#FCF3CF"
+    stroke: "#B7950B"
+  }
+}
+
+templates: {
+  label: "Prompt Template Repository"
+
+  shape: cylinder
+
+  style: {
+    fill: "#EBF5FB"
+    stroke: "#2471A3"
+  }
+}
+
+retriever: {
+  label: "Context Retriever"
+
+  style: {
+    fill: "#D6EAF8"
+    stroke: "#2471A3"
+  }
+}
+
+vector: {
+  label: "Vector Database"
+
+  shape: cylinder
+
+  style: {
+    fill: "#E8DAEF"
+    stroke: "#6C3483"
+  }
+}
+
+composer: {
+  label: "Prompt Composer"
+
+  style: {
+    fill: "#FDEDEC"
+    stroke: "#CB4335"
+  }
+}
+
+####################################################
+# AI Generation
+####################################################
+
+narrative_llm: {
+  label: "Narrative LLM"
+
+  style: {
+    fill: "#FDEBD0"
+    stroke: "#AF601A"
+  }
+}
+
+####################################################
+# Quality Assurance
+####################################################
+
+validator: {
+  label: "Narrative Validator"
+
+  style: {
+    fill: "#F9EBEA"
+    stroke: "#922B21"
+  }
+}
+
+####################################################
+# Output
+####################################################
+
+repository: {
+  label: "Knowledge Repository"
+
+  shape: cylinder
+
+  style: {
+    fill: "#F5EEF8"
+    stroke: "#76448A"
+  }
+}
+
+####################################################
+# Flow
+####################################################
+
+factbook -> builder
+
+builder -> retriever
+
+builder -> composer
+
+templates -> composer
+
+retriever -> vector
+
+vector -> composer
+
+composer -> narrative_llm
+
+narrative_llm -> validator
+
+validator -> repository: Store Approved Narratives

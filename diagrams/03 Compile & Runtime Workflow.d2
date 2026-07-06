@@ -1,0 +1,137 @@
+direction: down
+
+title: "Compile-Time & Runtime Workflow"
+
+request: {
+  label: "Generate SAR Request"
+  shape: oval
+}
+
+context: {
+  label: "Create Report Context"
+
+  style: {
+    fill: "#FCF3CF"
+  }
+}
+
+fetch: {
+  label: "Acquire ERP Snapshot"
+
+  style: {
+    fill: "#FCF3CF"
+  }
+}
+
+rules: {
+  label: "Load Approved Rules"
+
+  style: {
+    fill: "#F9EBEA"
+  }
+}
+
+execute: {
+  label: "Execute Rule Engine"
+
+  style: {
+    fill: "#FADBD8"
+  }
+}
+
+fallback: {
+  label: "AI Fallback\n(Only if Rule Missing)"
+
+  style: {
+    fill: "#FDEDEC"
+  }
+}
+
+narrative: {
+  label: "Generate Narratives"
+
+  style: {
+    fill: "#EBDEF0"
+  }
+}
+
+assemble: {
+  label: "Assemble Final Report"
+
+  style: {
+    fill: "#D5F5E3"
+  }
+}
+
+store: {
+  label: "Store Report & Audit Artifacts"
+
+  style: {
+    fill: "#F5EEF8"
+  }
+}
+
+notify: {
+  label: "Notify Completion"
+
+  style: {
+    fill: "#D6EAF8"
+  }
+}
+
+download: {
+  label: "Download PDF"
+  shape: oval
+}
+
+compile: {
+  label: "Compile Phase"
+
+  style: {
+    fill: "#EBF5FB"
+    stroke: "#2471A3"
+    stroke-width: 2
+  }
+
+  schema: "Analyze ERP Schema"
+
+  template: "Analyze NBA Template"
+
+  mapping: "AI Generate Rules"
+
+  validate: "Validate Rules"
+
+  publish: "Publish Rule Set"
+
+  schema -> mapping
+
+  template -> mapping
+
+  mapping -> validate
+
+  validate -> publish
+}
+
+request -> context
+
+context -> fetch
+
+fetch -> rules
+
+rules -> execute
+
+execute -> narrative: Success
+
+execute -> fallback: Rule Missing
+
+fallback -> narrative
+
+narrative -> assemble
+
+assemble -> store
+
+store -> notify
+
+notify -> download
+
+compile.publish -> rules

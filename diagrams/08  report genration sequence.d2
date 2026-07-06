@@ -1,0 +1,96 @@
+direction: right
+
+title: "Runtime Report Generation Sequence"
+
+####################################################
+# Participants
+####################################################
+
+faculty: {
+    label: "Faculty"
+    shape: person
+}
+
+portal: {
+    label: "SAR Portal"
+}
+
+orchestrator: {
+    label: "Report Orchestrator"
+}
+
+context: {
+    label: "Context Builder"
+}
+
+rule_engine: {
+    label: "Rule Execution Engine"
+}
+
+mapping_agent: {
+    label: "Runtime Mapping Agent"
+}
+
+mapping_llm: {
+    label: "Mapping LLM"
+}
+
+knowledge: {
+    label: "Knowledge Repository"
+}
+
+narrative: {
+    label: "Narrative Engine"
+}
+
+narrative_llm: {
+    label: "Narrative LLM"
+}
+
+assembler: {
+    label: "Document Assembler"
+}
+
+storage: {
+    label: "Object Storage"
+}
+
+####################################################
+# Sequence
+####################################################
+
+faculty -> portal: Generate SAR
+
+portal -> orchestrator: Create Report Request
+
+orchestrator -> context: Build Runtime Context
+
+context -> rule_engine: Execute Approved Rules
+
+rule_engine -> knowledge: Store Immutable FactBook
+
+rule_engine -> mapping_agent: Missing Rule (Optional)
+
+mapping_agent -> mapping_llm: Infer Runtime Mapping
+
+mapping_llm -> rule_engine: Temporary Rule
+
+rule_engine -> knowledge: Update FactBook
+
+orchestrator -> narrative: Generate Narratives
+
+narrative -> knowledge: Read FactBook
+
+narrative -> narrative_llm: Generate Text
+
+narrative_llm -> narrative: Narrative
+
+narrative -> knowledge: Store Narratives
+
+orchestrator -> assembler: Assemble Report
+
+assembler -> knowledge: Read Facts & Narratives
+
+assembler -> storage: Store PDF
+
+portal -> storage: Download PDF

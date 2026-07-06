@@ -1,0 +1,51 @@
+direction: down
+
+title: "Architecture Overview"
+
+overview: {
+
+  style: {
+    fill: "#EBF5FB"
+    stroke: "#2471A3"
+    stroke-width: 2
+  }
+
+  d1: "01\nSystem Context"
+
+  d2: "02\nContainer Architecture"
+
+  d3: "03\nReport Generation Pipeline"
+
+  d4: "04\nRule Execution Engine"
+
+  d5: "05\nNarrative Generation Engine"
+
+  d6: "06\nAI Mapping & ERP Integration"
+
+  d7: "07\nKnowledge & Repository Architecture"
+
+  d8: "08\nRuntime Sequence"
+
+  d9: "09\nPhysical Deployment"
+
+  d10: "10\nTrust & Security"
+
+}
+
+overview.d1 -> overview.d2
+
+overview.d2 -> overview.d3
+
+overview.d3 -> overview.d4
+
+overview.d4 -> overview.d5
+
+overview.d5 -> overview.d6
+
+overview.d6 -> overview.d7
+
+overview.d7 -> overview.d8
+
+overview.d8 -> overview.d9
+
+overview.d9 -> overview.d10

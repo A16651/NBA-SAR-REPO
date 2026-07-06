@@ -1,0 +1,55 @@
+direction: right
+
+title: " System Overview"
+
+faculty: {
+  label: "NBA Coordinator / Faculty"
+  shape: person
+}
+
+sar: {
+  label: "AI-Assisted NBA SAR Generation Platform"
+
+  style: {
+    fill: "#D6EAF8"
+    stroke: "#1F618D"
+    stroke-width: 2
+  }
+}
+
+erp: {
+  label: "Vidyanvesha ERP"
+
+  style: {
+    fill: "#FCF3CF"
+    stroke: "#B7950B"
+  }
+}
+
+ai: {
+  label: "Private AI Platform"
+
+  style: {
+    fill: "#FADBD8"
+    stroke: "#922B21"
+  }
+}
+
+storage: {
+  label: "Knowledge & SAR Repository"
+
+  style: {
+    fill: "#E8DAEF"
+    stroke: "#6C3483"
+  }
+}
+
+faculty -> sar: Generate / Review SAR
+
+sar -> erp: Read Institutional Data
+
+sar -> ai: Mapping Compilation, AI Fallback & Narrative Generation
+
+sar -> storage: Store Reports, Rules & Audit Artifacts
+
+storage -> faculty: Download Report
